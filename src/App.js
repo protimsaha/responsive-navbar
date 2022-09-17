@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
+import About from './About';
 import './App.css';
+import Contact from './Contact';
+import Home from './Home';
+import Login from './Login';
+import Navbar from './Navbar'
+import Services from './Services';
 
+const publicRoute = [
+  { path: '/', name: 'Home', Component: Home },
+  { path: '/contact', name: 'Contact', Component: Contact },
+  { path: '/about', name: 'About', Component: About },
+  { path: '/services', name: 'Services', Component: Services },
+  { path: '/login', name: 'Login', Component: Login },
+]
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar>
+        <Routes>
+          {
+            publicRoute.map(({ path, Component }, index) => <Route key={index} path={path} element={<Component />}></Route>)
+          }
+        </Routes>
+      </Navbar>
     </div>
   );
 }
